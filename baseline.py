@@ -12,6 +12,7 @@
 """
 Part 1: Simple baseline that only uses word statistics to predict tags
 """
+from collections import Counter
 
 def baseline(train, test):
     '''
@@ -26,8 +27,7 @@ def baseline(train, test):
     
     for sentence in train:
         for word in sentence:
-            word1 = word
-            tag1 = word
+            word1, tag1 = word
 
             if word1 not in final_tags:
                 final_tags[word1] = {}
