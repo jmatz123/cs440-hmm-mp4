@@ -51,15 +51,7 @@ def baseline(train, test):
 
         for word in sentence:
             if word in final_tags:
-                tag = 0
-                final_tag = final_tags[word]
-                final_tag_get = final_tags[word].get
-
-                if (final_tag < final_tag_get) :
-                    tag = final_tag_get
-                else :
-                    tag = final_tag
-
+                tag = max(final_tags[word], key=final_tags[word].get)
                 list_of_word_pairs.append((word, tag))
 
             else:
