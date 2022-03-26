@@ -43,7 +43,7 @@ def baseline(train, test):
             else:
                 tags[tag1] += 1
 
-    max_tags = max(tags, tags.get)
+    max_tags = max(tags, key = tags.get)
     result = []
 
     for sentence in test:
