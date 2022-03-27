@@ -14,6 +14,9 @@
 Extra Credit: Here should be your best version of viterbi, 
 with enhancements such as dealing with suffixes/prefixes separately
 """
+import math
+import sys
+import numpy as np
 
 def viterbi_ec(train, test):
     '''
