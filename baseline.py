@@ -14,6 +14,7 @@ Part 1: Simple baseline that only uses word statistics to predict tags
 """
 from collections import Counter
 
+
 def baseline(train, test):
     '''
     input:  training data (list of sentences, with tags on the words)
@@ -21,29 +22,30 @@ def baseline(train, test):
     output: list of sentences, each sentence is a list of (word,tag) pairs.
             E.g., [[(word1, tag1), (word2, tag2)], [(word3, tag3), (word4, tag4)]]
     '''
-    
+
     tags = {}
     final_tags = {}
-    
+
     for sentence in train:
-        for word in sentence:
-            word1, tag1 = word
+        for info in sentence:
+            word, tag = info
 
-            if word1 not in final_tags:
-                final_tags[word1] = {}
+        # add it to the dict
+            if word not in final_tags:
+                final_tags[word] = {}
 
-            if tag1 not in final_tags[word1]:
-                final_tags[word1][tag1] = 1
+            if tag not in final_tags[word]:
+                final_tags[word][tag] = 1
             else:
-                final_tags[word1][tag1] += 1
-            
+                final_tags[word][tag] += 1
+
         #     increment count
-            if tag1 not in tags:
-                tags[tag1] = 1
+            if tag not in tags:
+                tags[tag] = 1
             else:
-                tags[tag1] += 1
+                tags[tag] += 1
 
-    max_tags = max(tags, key = tags.get)
+    max_tags = max(tags, key=tags.get)
     result = []
 
     for sentence in test:

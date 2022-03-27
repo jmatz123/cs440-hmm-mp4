@@ -27,6 +27,7 @@ def main():
     prediction = []
     
     """WRITE YOUR VITERBI IMPLEMENTATION HERE"""
+    
 
     print('Your Output is:',prediction,'\n Expected Output is:',output)
 
