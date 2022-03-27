@@ -38,29 +38,27 @@ def viterbi_1(train, test):
     smooth_constant = 0.000001
     laplace= 0.0001 
 
-    first_check(train, final_tags, tags, list_of_i, start_i)
+    for sentence in train:
+        for info in sentence:
+            word, tag = info
 
-    # for sentence in train:
-    #     for info in sentence:
-    #         word, tag = info
+        # add it to the dict
+            if word not in final_tags:
+                final_tags[word] = {}
 
-    #     # add it to the dict
-    #         if word not in final_tags:
-    #             final_tags[word] = {}
-
-    #         if tag not in final_tags[word]:
-    #             final_tags[word][tag] = 1
-    #         else:
-    #             final_tags[word][tag] += 1
+            if tag not in final_tags[word]:
+                final_tags[word][tag] = 1
+            else:
+                final_tags[word][tag] += 1
             
-    #     # increment counts
-    #         if tag not in tags:
-    #             list_of_i[tag] = start_i
-    #             tags[tag] = 1
+        # increment counts
+            if tag not in tags:
+                list_of_i[tag] = start_i
+                tags[tag] = 1
                 
-    #             start_i += 1
-    #         else:
-    #             tags[tag] += 1
+                start_i += 1
+            else:
+                tags[tag] += 1
 
     for w in final_tags.keys():
         for t in final_tags[w].keys():
@@ -170,29 +168,6 @@ def trellis(final_tags, list_of_i, tags, probs_pairs, smooth_constant, sentence,
 
         result.append(pair_list)
     return result
-
-def first_check(train, final_tags, tags, list_of_i, start_i) :
-    for sentence in train:
-        for info in sentence:
-            word, tag = info
-
-        # add it to the dict
-            if word not in final_tags:
-                final_tags[word] = {}
-
-            if tag not in final_tags[word]:
-                final_tags[word][tag] = 1
-            else:
-                final_tags[word][tag] += 1
-            
-        # increment counts
-            if tag not in tags:
-                list_of_i[tag] = start_i
-                tags[tag] = 1
-                
-                start_i += 1
-            else:
-                tags[tag] += 1
 
 def trell_helper_0(list_of_i, final_tags, add_word, smooth_constant, tags, size_of_tag, probs, pair_list) :
     probability = 0
