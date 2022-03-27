@@ -30,8 +30,8 @@ def viterbi_2(train, test):
 
     start_i = 0
     list_of_i = {}
-    smooth_constant = 0.000001
-    laplace = 0.0001
+    smooth_constant = 0.00001
+    laplace = 0.00001
     word_types = ["NOUN", "ADV", "VERB", "ADJ"]
     
     for sentence in train :
@@ -149,7 +149,7 @@ def viterbi_2(train, test):
 
 def smooth_helper(word_types, tag) :
     if tag not in word_types :
-        smooth_constant = .15
+        smooth_constant = .13
     else :
         smooth_constant = 0.000001
     return smooth_constant
